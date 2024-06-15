@@ -1,0 +1,21 @@
+steps:
+- name: 'maven:3.6.3-jdk-8'
+  entrypoint: 'mvn'
+  args: ['clean', 'install']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/doantotnghiep-426507/springboothelloword', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/doantotnghiep-426507/springboothelloword']
+- name: 'gcr.io/cloud-builders/kubectl'
+  args:
+    - 'set'
+    - 'image'
+    - 'deployment/springboothelloword-deployment'
+    - 'my-java-app=gcr.io/doantotnghiep-426507/springboothelloword:latest'
+  env:
+    - 'CLOUDSDK_COMPUTE_ZONE=africa-south1-a'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=doantotnghiep'
+images:
+- 'gcr.io/doantotnghiep-426507/springboothelloword'
+options:
+  logging: CLOUD_LOGGING_ONLY
