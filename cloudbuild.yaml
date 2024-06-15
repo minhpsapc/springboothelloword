@@ -11,7 +11,7 @@ steps:
     - 'set'
     - 'image'
     - 'deployment/springboothelloword-deployment'
-    - 'my-java-app=gcr.io/doantotnghiep-426507/springboothelloword:latest'
+    - 'springboothelloword=gcr.io/doantotnghiep-426507/springboothelloword:latest'
   env:
     - 'CLOUDSDK_COMPUTE_ZONE=africa-south1-a'
     - 'CLOUDSDK_CONTAINER_CLUSTER=doantotnghiep'
