@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: springboothelloword
-        image: gcr.io/doantotnghiep-426507/springboothelloword:latest
+        image: africa-south1-docker.pkg.dev/doantotnghiep-426507/springboothelloword/springboothelloword:latest
         ports:
         - containerPort: 8080
 ---
