@@ -21,7 +21,16 @@ steps:
     args: ["package", "-Dmaven.test.skip=true"]
   - name: gcr.io/cloud-builders/docker
     args: ["build", "-t", "africa-south1-docker.pkg.dev/doantotnghiep-426507/springboothelloword/springboothelloword:latest", "--build-arg=JAR_FILE=target/spring-boot-2-hello-world-1.0.2-SNAPSHOT.jar", "."]
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args: ['apply', '-f', './deployment.yaml']
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=africa-south1-a'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=doantotnghiep'
+    id: 'kubectl-apply'
 images: ["africa-south1-docker.pkg.dev/doantotnghiep-426507/springboothelloword/springboothelloword:latest"]
 # [END cloudbuild_maven]
 options:
   logging: CLOUD_LOGGING_ONLY
+substitutions:
+  _CLUSTER: 'doantotnghiep'
+  _ZONE: 'africa-south1-a'
