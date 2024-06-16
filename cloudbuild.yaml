@@ -20,8 +20,8 @@ steps:
     entrypoint: mvn
     args: ["package", "-Dmaven.test.skip=true"]
   - name: gcr.io/cloud-builders/docker
-    args: ["build", "-t", "us-central1-docker.pkg.dev/doantotnghiep-426507/springboothelloword/hellospring", "--build-arg=JAR_FILE=target/spring-boot-2-hello-world-1.0.2-SNAPSHOT.jar", "."]
-images: ["us-central1-docker.pkg.dev/doantotnghiep-426507/springboothelloword/springboothelloword"]
+    args: ["build", "-t", "africa-south1-docker.pkg.dev/doantotnghiep-426507/springboothelloword/hellospring", "--build-arg=JAR_FILE=target/spring-boot-2-hello-world-1.0.2-SNAPSHOT.jar", "."]
+images: ["africa-south1-docker.pkg.dev/doantotnghiep-426507/springboothelloword/springboothelloword"]
 # [END cloudbuild_maven]
 options:
   logging: CLOUD_LOGGING_ONLY
