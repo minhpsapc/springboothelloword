@@ -11,15 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-# [START cloudbuild_maven]
-steps:
-  - name: maven:3.6.3-jdk-8
-    entrypoint: mvn
-    args: ["test"]
-  - name: maven:3.6.3-jdk-8
-    entrypoint: mvn
-    args: ["package", "-Dmaven.test.skip=true"]
-  - name: gcr.io/cloud-builders/docker
-    args: ["build", "-t", "us-central1-docker.pkg.dev/doantotnghiep-426507/springboothelloword/hellospring", "--build-arg=JAR_FILE=target/spring-boot-2-hello-world-1.0.2-SNAPSHOT.jar", "."]
-images: ["us-central1-docker.pkg.dev/doantotnghiep-426507/springboothelloword/springboothelloword"]
-# [END cloudbuild_maven]
+
+FROM openjdk:19-jdk-alpine
+ARG JAR_FILE=springboothelloword
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java", "-jar", "/app.jar"]
